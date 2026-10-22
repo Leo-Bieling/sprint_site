@@ -4,6 +4,7 @@
       Only on devices with a fine pointer that can hover, and not with prefers-reduced-motion.
       Over form fields the dot hides and the normal system cursor shows.
    2. Scroll reveal: sections fade up 16px as they come into view (0.65s ease), as on blng.studio.
+   3. Mobile menu (a <details>): while open the page behind doesn't scroll; Escape closes it.
    Without JavaScript nothing changes: the system cursor stays and all content is visible. */
 (function () {
   'use strict';
@@ -29,6 +30,15 @@
     }, { passive: true });
     root.addEventListener('mouseleave', function () { dot.classList.remove('is-visible'); });
     window.addEventListener('blur', function () { dot.classList.remove('is-visible'); });
+  }
+
+  // ── Mobile menu ──
+  var menu = d.querySelector('details.menu');
+  if (menu) {
+    menu.addEventListener('toggle', function () { root.classList.toggle('menu-open', menu.open); });
+    d.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+    });
   }
 
   // ── Scroll reveal ──
