@@ -15,7 +15,7 @@
 :root { --label: #62625F; --muted: #62625F; --small-text: #5A5957; }
 /* blng sprint green = the green of "sprint" in the logo (#4E7400 at 75% on porcelain renders #7A973F,
    the blng.studio --green). It takes the role terracotta has on blng.studio: cursor and hover. */
-:root { --accent: var(--green); --stone: #ECE8E1; --sky-soft: #B3CCDD; --ease: ease; }
+:root { --accent: var(--green); --stone: #ECE8E1; --sky-soft: #B3CCDD; --terracotta-soft: #F2CDB9; --ease: ease; }
 html { -webkit-text-size-adjust: 100%; }
 body { font-size: var(--fs-body); line-height: var(--lh-body); }
 
@@ -236,7 +236,7 @@ main .tiles { max-width: none; list-style: none; padding: 0; margin: 48px 0 40px
 .tile-svg { width: 78%; height: auto; display: block; }
 .tile-mustard { background: var(--mustard-soft); }
 .tile-green { background: var(--green-soft); }
-.tile-terracotta { background: var(--terracotta); }
+.tile-terracotta { background: var(--terracotta-soft); }
 .tile-stone { background: var(--stone); }
 .tile-sky { background: var(--sky-soft); }   /* soft sky blue (Portfolio Review): charcoal 10.2:1 */
 .tile-num { font-size: clamp(4rem, 9vw, 7.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1; color: var(--accent); }
@@ -300,17 +300,22 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.ha
 }
 .page-legal-notice main > section li { padding-left: 0; }
 
-/* ── Tile thumbnails (build/thumbs/*.svg): line drawings with a green accent and a little motion.
+/* ── Tile thumbnails (build/thumbs/*.svg): line drawings with an accent in the tile's category colour and a little motion.
    .th-draw   a path with pathLength="1" stroke-dasharray="1" that draws itself in
    .th-pop    fades and grows in
    .th-rise   grows up from its base (massing, walls)
    --d        start delay, set inline: style="--d:.6s"
    .th-loop-breathe / .th-loop-march   a slow, endless pulse / dash drift after the draw-in
+   .th-loop-sweep  on a group: turns slowly round --o (e.g. style="--o:226px 108px"), like a clock hand
    The finished drawing is the resting state: animations only run once the tile scrolls into view,
    and with reduced motion they don't run at all. ── */
-.tile-svg .th-accent-stroke { stroke: var(--accent); }
-.tile-svg .th-accent-fill { fill: var(--accent); fill-opacity: .3; }
-.tile-svg .th-accent-fill-solid { fill: var(--green-soft); stroke: var(--accent); stroke-width: 2; }
+/* accent colour per tile, set inline by the build from the tile's client category (CATEGORY_COLOURS):
+   --th-accent = the strong category colour, --th-accent-soft = the soft one (.th-cat-fill),
+   --th-accent-tint = fill inside accent shapes */
+.tile-svg .th-accent-stroke { stroke: var(--th-accent, var(--accent)); }
+.tile-svg .th-accent-fill { fill: var(--th-accent, var(--accent)); fill-opacity: .3; }
+.tile-svg .th-cat-fill { fill: var(--th-accent-soft, var(--green-soft)); }   /* solid soft category colour (article drawings) */
+.tile-svg .th-accent-fill-solid { fill: var(--th-accent-tint, var(--green-soft)); stroke: var(--th-accent, var(--accent)); stroke-width: 2; }
 .tile-svg .th-pop { transform-box: fill-box; transform-origin: center; }
 .tile-svg .th-rise { transform-box: fill-box; transform-origin: center bottom; }
 @media (prefers-reduced-motion: no-preference) {
@@ -319,12 +324,14 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.ha
   .tile-svg .th-rise { animation: th-rise .7s cubic-bezier(.2,.7,.3,1) var(--d, 0s) both; }
   .tile-svg .th-draw.th-loop-breathe { animation: th-draw 1.1s ease var(--d, 0s) both, th-breathe 3.2s ease-in-out calc(var(--d, 0s) + 1.1s) infinite; }
   .tile-svg .th-loop-breathe { animation: th-breathe 3.2s ease-in-out 2.2s infinite; }
+  .tile-svg .th-loop-sweep { transform-box: view-box; transform-origin: var(--o, center); animation: th-sweep 12s linear var(--d, 2s) infinite; }
   .tile-svg .th-draw.th-loop-march { animation: th-draw 1.1s ease var(--d, 0s) both, th-march 14s linear calc(var(--d, 0s) + 1.1s) infinite; }
   /* hold everything until the tile is on screen (site.js adds .visible) */
   .js-reveal .tile:not(.visible) .tile-svg * { animation-play-state: paused; }
 }
 @keyframes th-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @keyframes th-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes th-sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes th-rise { from { opacity: 0; transform: scaleY(.15); } to { opacity: 1; transform: none; } }
 @keyframes th-breathe { 0%, 100% { opacity: 1; } 50% { opacity: .6; } }
 @keyframes th-march { from { stroke-dasharray: .04 .02; stroke-dashoffset: 0; } to { stroke-dasharray: .04 .02; stroke-dashoffset: -1; } }
