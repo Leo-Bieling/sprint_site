@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sprints.blng.studio/sitemap.xml
+Sitemap: https://sprint.blng.studio/sitemap.xml
