@@ -15,7 +15,7 @@
 :root { --label: #62625F; --muted: #62625F; --small-text: #5A5957; }
 /* blng sprint green = the green of "sprint" in the logo (#4E7400 at 75% on porcelain renders #7A973F,
    the blng.studio --green). It takes the role terracotta has on blng.studio: cursor and hover. */
-:root { --accent: var(--green); --stone: #ECE8E1; --ease: ease; }
+:root { --accent: var(--green); --stone: #ECE8E1; --sky-soft: #B3CCDD; --ease: ease; }
 html { -webkit-text-size-adjust: 100%; }
 body { font-size: var(--fs-body); line-height: var(--lh-body); }
 
@@ -238,6 +238,7 @@ main .tiles { max-width: none; list-style: none; padding: 0; margin: 48px 0 40px
 .tile-green { background: var(--green-soft); }
 .tile-terracotta { background: var(--terracotta); }
 .tile-stone { background: var(--stone); }
+.tile-sky { background: var(--sky-soft); }   /* soft sky blue (Portfolio Review): charcoal 10.2:1 */
 .tile-num { font-size: clamp(4rem, 9vw, 7.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1; color: var(--accent); }
 .tile-body { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 22px; }
 main .tile-head p, main .tile-body p, main .tile-body li { font-size: var(--fs-body-sm); line-height: 1.6; margin-bottom: .55em; }
@@ -325,7 +326,7 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.ha
 @keyframes th-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @keyframes th-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
 @keyframes th-rise { from { opacity: 0; transform: scaleY(.15); } to { opacity: 1; transform: none; } }
-@keyframes th-breathe { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@keyframes th-breathe { 0%, 100% { opacity: 1; } 50% { opacity: .6; } }
 @keyframes th-march { from { stroke-dasharray: .04 .02; stroke-dashoffset: 0; } to { stroke-dasharray: .04 .02; stroke-dashoffset: -1; } }
 
 /* no sideways scrolling on small screens */
