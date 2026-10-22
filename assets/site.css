@@ -330,3 +330,14 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.ha
 
 /* no sideways scrolling on small screens */
 html, body { overflow-x: clip; }
+
+/* ── Client category chips (CLIENT_CATEGORIES in build.py). Pill and uppercase tracking as blng.studio's
+   filter buttons, smaller and calm: a light tint of the category with a thin outline, so the chip sits
+   on any tile tint (mustard, green, terracotta, stone) without clashing. Text >= 7:1 on the chip. ── */
+.client-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0 0 14px; max-width: none; }
+main .client-chips li.client-chip { margin: 0; padding: 4px 12px 3px; font-size: .85rem !important; line-height: 1.4; letter-spacing: .14em;
+  text-transform: uppercase; font-weight: 400; color: var(--chip-ink); background: var(--chip-bg);
+  border: 1.5px solid var(--chip-line); border-radius: 999px; white-space: nowrap; }
+main .client-chips li.client-chip::before, main .client-chips li.client-chip::marker { content: none; }
+.page-clients { margin: 24px 0 36px; }
+@media (max-width: 700px) { main .client-chips li.client-chip { font-size: .8rem !important; padding: 3px 10px 2px; } }
