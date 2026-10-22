@@ -198,7 +198,7 @@ details.menu { border: 0 !important; margin: 0; padding: 0; max-width: none; }
 
 /* ── Tiles (home, sprints, articles, free resources): blng.studio project feed — a 3:2 picture,
    then the name. Each tile has a 2px border in the divider colour (every rule on blng.studio is 2px).
-   Hover / keyboard focus: the border turns green, the picture zooms to 1.02 inside its frame, the
+   Hover / keyboard focus: the border turns green, the picture zooms to 1.07 inside its frame (0.4s ease), the
    title turns green and the arrow slides 10px (blng.studio "next project" link). No lift, no shadow. ── */
 main .tiles { max-width: none; list-style: none; padding: 0; margin: 48px 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .tile { margin: 0; padding: 0; }
@@ -207,8 +207,8 @@ main .tiles { max-width: none; list-style: none; padding: 0; margin: 48px 0 40px
 .tile-link:hover, .tile-link:focus-visible { border-color: var(--accent); }
 .tile-link:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 4px; box-shadow: none; }
 .tile-media { aspect-ratio: 3 / 2; overflow: hidden; color: var(--charcoal); }
-.tile-media-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform .6s var(--ease); }
-.tile-link:hover .tile-media-inner, .tile-link:focus-visible .tile-media-inner { transform: scale(1.02); }
+.tile-media-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform .4s ease; }
+.tile-link:hover .tile-media-inner, .tile-link:focus-visible .tile-media-inner { transform: scale(1.07); }  /* clipped by .tile-media overflow:hidden */
 .tile-media img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.02) saturate(.82); }  /* blng.studio photo treatment */
 .tile-svg { width: 78%; height: auto; display: block; }
 .tile-mustard { background: var(--mustard-soft); }
