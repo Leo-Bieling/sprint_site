@@ -1,0 +1,118 @@
+/* blng sprints — design tokens
+   Source: live blng.studio CSS (inline <style> blocks on index, project, work,
+   about, what-we-do, contact, legal pages), fetched 21 Oct 2026.
+   Values marked "derived" are not on blng.studio; they are small additions
+   for components the main site doesn't have (sprint card, FAQ).
+   DM Sans is self-hosted: see /assets/fonts/ and @font-face in site.css.
+*/
+
+:root {
+  /* ── Colour (names and hex exactly as on blng.studio) ── */
+  --charcoal:   #1C1C1A;   /* all text, logo, hamburger bars */
+  --porcelain:  #F8F6F3;   /* page + nav background */
+  --terracotta: #D98E6A;   /* hover, emphasis (italic), list bullets */
+  --mustard:    #FFC850;   /* declared on blng.studio; used sparingly */
+  --green:      #7A973F;   /* active nav item / active filter / small meta labels */
+  --page-bg:    var(--porcelain);
+
+  /* Tints used on blng.studio */
+  --mustard-soft: #FFD67C; /* About "manifesto" band; mobile-menu bg option */
+  --green-soft:   #B8CE88; /* mobile-menu bg option */
+  --label:        rgba(28,28,26,0.45); /* small uppercase labels */
+  --muted:        rgba(28,28,26,0.5);  /* subtitles */
+  --disabled:     rgba(28,28,26,0.4);  /* greyed-out items */
+  --rule:         rgba(28,28,26,0.08); /* section dividers */
+  --rule-strong:  rgba(28,28,26,0.1);  /* footer / list top borders */
+  --rule-nav:     rgba(28,28,26,0.07); /* nav bottom border */
+  --btn-border:   rgba(28,28,26,0.35); /* pill button outline */
+  --link-underline: rgba(28,28,26,0.2);
+  --shadow-float: 0 16px 60px rgba(28,28,26,0.15); /* floating images only */
+
+  /* ── Type ── */
+  --font: 'DM Sans', sans-serif;
+  --fw-light: 300;   /* body default and large headings */
+  --fw-regular: 400;
+  --fw-bold: 700;    /* active nav, section/service names, person names */
+
+  /* Scale (rem; blng.studio leaves the root at the browser default, 16px) */
+  --fs-display: clamp(2.6rem, 5vw, 4.8rem);  /* page title / hero heading */
+  --fs-h2:      clamp(2.0rem, 3.5vw, 3.2rem);  /* "next project" size; section heads */
+  --fs-h3:      2.0rem;   /* list-row title, pillar term */
+  --fs-lead:    1.9rem;   /* intro one-liner */
+  --fs-body:    1.75rem;  /* body paragraphs (large, airy) */
+  --fs-body-sm: 1.6rem;   /* lists, contact, legal body */
+  --fs-meta:    1.5rem;   /* spec / meta values */
+  --fs-nav:     1.4rem;   /* nav links, uppercase */
+  --fs-small:   1.25rem;  /* footer */
+  --fs-button:  1.1rem;   /* pill buttons, uppercase */
+  --fs-label:   1.0rem;   /* uppercase labels */
+
+  --lh-tight: 1.05;  /* display */
+  --lh-head:  1.2;
+  --lh-body:  1.85;
+  --lh-footer: 1.9;
+
+  --ls-display: -0.02em;
+  --ls-nav:     0.12em;
+  --ls-button:  0.14em;
+  --ls-label:   0.2em;   /* 0.18–0.22em on the site */
+  --ls-footer:  0.04em;
+
+  /* ── Space & layout ── */
+  --gutter-left:  80px;   /* blng.studio pads more on the left than the right */
+  --gutter-right: 48px;
+  --nav-pad-y:    12px;
+  --page-top:     200px;  /* clears the fixed nav */
+  --section-y:    72px;   /* 64–96px on the site */
+  --col-gap:      80px;   /* two-column gap */
+  --stack-gap:    48px;
+  --gallery-gap:  18px;
+  --rule-w:       2px;    /* every divider and border is 2px */
+  --radius-pill:  999px;  /* the ONLY rounded corner on the site */
+
+  /* ── Motion ── */
+  --t-fast: 0.2s;
+  --t-nav:  0.25s;
+  --t-reveal: 0.65s;
+
+  /* ── Logo widths (brand_assets/blng-studio-crop.png, 1468×455) ── */
+  --logo-w: 487px;
+}
+
+/* Breakpoints used on blng.studio: 1024px (hamburger appears, logo 401px),
+   700px (single column), 480px (smallest). CSS custom properties can't be
+   used inside @media, so they're listed here and applied below. */
+@media (max-width: 1024px) {
+  :root { --logo-w: 401px; --col-gap: 48px; }
+}
+@media (max-width: 700px) {
+  :root {
+    --logo-w: 298px;
+    --gutter-left: 24px; --gutter-right: 24px;
+    --page-top: 120px; --section-y: 48px; --col-gap: 40px;
+    --fs-body: 1.5rem; --fs-lead: 1.6rem; --fs-nav: 1.2rem; --fs-button: 0.9rem;
+    --fs-display: clamp(2.2rem, 6vw, 3.2rem);
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    --logo-w: 220px;
+    --gutter-left: 16px; --gutter-right: 16px;
+    --page-top: 96px; --section-y: 40px;
+    --fs-lead: 1.4rem; --fs-nav: 1.0rem;
+    --fs-display: clamp(2.0rem, 6vw, 2.8rem);
+  }
+}
+
+/* ── Minimal base so the tokens work on their own ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--page-bg); color: var(--charcoal);
+  font-family: var(--font); font-weight: var(--fw-light);
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; } /* derived: a11y */
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
