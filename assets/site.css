@@ -13,6 +13,9 @@
    #62625F = charcoal at ~68% (5.67:1), #5A5957 = ~72% (6.49:1). The blng.studio
    45% label (2.81:1) and 50% muted (3.24:1) values fail AA, so they are replaced here. */
 :root { --label: #62625F; --muted: #62625F; --small-text: #5A5957; }
+/* blng sprint green = the green of "sprint" in the logo (#4E7400 at 75% on porcelain renders #7A973F,
+   the blng.studio --green). It takes the role terracotta has on blng.studio: cursor and hover. */
+:root { --accent: var(--green); --stone: #ECE8E1; --ease: ease; }
 html { -webkit-text-size-adjust: 100%; }
 body { font-size: var(--fs-body); line-height: var(--lh-body); }
 
@@ -31,9 +34,10 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 :root { --header-h: 177px; }
 .nav-links { display: flex; gap: 44px; list-style: none; }
 .nav-links a, .menu-panel a { font-size: var(--fs-nav); letter-spacing: var(--ls-nav); text-transform: uppercase; text-decoration: none; color: var(--charcoal); transition: color var(--t-nav); }
-.nav-links a, .menu-panel a { text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 2px; text-underline-offset: 8px; transition: text-decoration-color var(--t-nav); }
-.nav-links a:hover, .menu-panel a:hover { text-decoration-color: var(--terracotta); }
-/* green bold at 22px = large text, 3.08:1 (AA large needs 3:1); on the mustard menu panel green fails, so it stays charcoal there */
+/* hover as blng.studio: the text colour changes (0.25s); green here, terracotta there */
+.nav-links a:hover { color: var(--accent); }
+.menu-panel a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+/* green bold at 22px = large text, 3.08:1 (AA large needs 3:1); on the green-soft menu panel green fails, so it stays charcoal there */
 .nav-links a.active { color: var(--green); font-weight: 700; }
 .menu-panel a.active { color: var(--charcoal); font-weight: 700; text-decoration-color: var(--charcoal); }
 .menu { display: none; }
@@ -44,7 +48,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 .menu[open] .bars span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
 .menu[open] .bars span:nth-child(2) { opacity: 0; }
 .menu[open] .bars span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-.menu-panel { position: fixed; left: 0; right: 0; top: var(--header-h, 80px); bottom: 0; background: var(--mustard-soft); padding: 48px var(--gutter-right) 48px var(--gutter-left); }
+.menu-panel { position: fixed; left: 0; right: 0; top: var(--header-h, 80px); bottom: 0; background: var(--green-soft); padding: 48px var(--gutter-right) 48px var(--gutter-left); }
 .menu-panel ul { list-style: none; display: flex; flex-direction: column; gap: 32px; }
 .menu-panel a { font-size: 1.6rem; }
 
@@ -75,20 +79,21 @@ main > section > ul, main > section > ol, main > section > p, details, .card p {
 main > section li, details li, details p { font-size: var(--fs-body-sm); line-height: 1.75; }
 
 /* text links */
-main a:not(.btn) { color: inherit; text-decoration: none; border-bottom: var(--rule-w) solid var(--link-underline); transition: color var(--t-fast), border-color var(--t-fast); }
-/* hover: text stays charcoal (terracotta text is only 2.43:1); the underline turns terracotta and thickens */
-main a:not(.btn):hover { border-bottom-color: var(--terracotta); box-shadow: 0 1px 0 var(--terracotta); }
+/* text links as on blng.studio (contact / legal pages): 2px underline at 20% charcoal; on hover
+   text and underline change colour together (0.2s). blng.studio: terracotta; blng sprint: green. */
+main a:not(.btn):not(.tile-link) { color: inherit; text-decoration: none; border-bottom: var(--rule-w) solid var(--link-underline); transition: color var(--t-fast), border-color var(--t-fast); }
+main a:not(.btn):not(.tile-link):hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* buttons: outline pill (blng.studio) + one solid booking button per page */
 .actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 40px 0 24px; }
 .btn { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font); font-weight: 400; font-size: var(--fs-button); letter-spacing: var(--ls-button); text-transform: uppercase; line-height: 1.4;
   padding: 12px 28px; border: var(--rule-w) solid var(--btn-border); border-radius: var(--radius-pill); background: transparent; color: var(--charcoal); text-decoration: none; transition: border-color var(--t-fast), color var(--t-fast), background-color var(--t-fast); }
-.btn:hover { border-color: var(--terracotta); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }   /* blng.studio .more-btn: border + text change colour */
 .btn-solid { background: var(--charcoal); border-color: var(--charcoal); color: var(--porcelain); }
-.btn-solid:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--charcoal); text-decoration: underline; } /* charcoal on terracotta 6.52:1 */
+.btn-solid:hover { background: var(--accent); border-color: var(--accent); color: var(--charcoal); } /* charcoal on green 5.2:1 */
 p:not(.actions) > .btn-solid, li > .btn-solid { padding: 6px 18px; vertical-align: baseline; }
 .btn-inert { cursor: default; color: var(--muted); border-color: var(--rule-strong); }
-.btn-inert:hover { color: var(--muted); border-color: var(--rule-strong); text-decoration: none; }
+.btn-inert:hover { color: var(--muted); border-color: var(--rule-strong); }
 
 /* sprint cards: ruled columns, no boxes */
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); margin: 40px 0 32px; border-top: var(--rule-w) solid var(--rule-strong); }
@@ -107,7 +112,7 @@ summary { list-style: none; cursor: pointer; padding: 20px 48px 20px 0; position
 summary::-webkit-details-marker { display: none; }
 summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-weight: 300; font-size: 1.8rem; color: var(--label); transition: color var(--t-fast); }
 details[open] > summary::after { content: "–"; }
-summary:hover { text-decoration: underline; text-decoration-color: var(--terracotta); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+summary:hover { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
 summary:hover::after { color: var(--charcoal); }
 details > :not(summary) { max-width: 860px; }
 details[open] { padding-bottom: 12px; }
@@ -136,15 +141,16 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
 .page-article main > header > p:not(.eyebrow) { font-size: var(--fs-body-sm); }
 .page-article h1 { font-size: clamp(2.2rem, 4vw, 4rem); }
 
-/* ── Footer (3 columns, legal lines, one row of links) ── */
-.site-footer { border-top: var(--rule-w) solid var(--rule-strong); padding: 56px 60px 48px; font-size: var(--fs-label); line-height: 1.7; letter-spacing: var(--ls-footer); color: var(--small-text); }
-.footer-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; align-items: start; }
-.footer-col p { margin-bottom: .9em; }
-.footer-links { list-style: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 40px; padding-top: 28px; border-top: var(--rule-w) solid var(--rule); align-items: center; }
-.footer-links li { margin: 0; padding: 0; }
-.site-footer a:not(.btn) { color: var(--charcoal); text-underline-offset: 3px; text-decoration-thickness: 1px; transition: color var(--t-fast); }
-.site-footer a:not(.btn):hover { text-decoration-color: var(--terracotta); text-decoration-thickness: 2px; }
-.footer-links .footer-cta { margin-left: auto; }
+/* ── Footer: as blng.studio. Three columns (address | contact | legal + ©), bottom-aligned,
+   1.2rem, 0.04em tracking, on a soft colour band. blng.studio picks mustard / green / terracotta
+   at random per page view; blng sprint always uses the soft green. ── */
+.site-footer { background: var(--green-soft); border-top: var(--rule-w) solid var(--rule-strong); padding: 56px 60px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: end; flex-shrink: 0; margin-top: auto;
+  font-size: 1.2rem; line-height: 1.9; letter-spacing: var(--ls-footer); color: var(--charcoal); }
+.footer-middle { text-align: center; line-height: 2; }
+.footer-right { text-align: right; }
+.site-footer a { color: var(--charcoal); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: text-decoration-thickness var(--t-fast), color var(--t-fast); }
+/* green text on the green band would vanish, so the footer hover thickens the underline instead */
+.site-footer a:hover { text-decoration-thickness: 2px; }
 
 :focus-visible { outline: 2px solid var(--charcoal); outline-offset: 3px; box-shadow: 0 0 0 5px var(--porcelain); }
 .btn:focus-visible { outline-offset: 4px; }
@@ -158,7 +164,6 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
   .cards { grid-template-columns: 1fr; }
   .card, .card + .card { padding: 32px 0; border-right: none; border-bottom: var(--rule-w) solid var(--rule-strong); }
   .card:last-child { border-bottom: none; }
-  .site-footer { padding: 48px var(--gutter-right) 40px var(--gutter-left); }
 }
 @media (max-width: 700px) {
   .logo img { height: 92px; }
@@ -173,8 +178,8 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
   main > section > p, main > section > ul, main > section > ol { font-size: 1.25rem; line-height: 1.75; }
   .hero > p:not(.eyebrow):not(.actions) { font-size: 1.3rem; line-height: 1.7; }
   .btn { padding: 9px 20px; }
-  .footer-cols { grid-template-columns: 1fr; gap: 20px; }
-  .footer-links .footer-cta { margin-left: 0; }
+  .site-footer { grid-template-columns: 1fr; gap: 20px; padding: 40px 24px; }
+  .footer-middle, .footer-right { text-align: left; }
   .photos-2 { grid-template-columns: 1fr; }
   aside { padding: 24px; }
   table { font-size: 1.05rem; }
@@ -183,10 +188,86 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
 @media (max-width: 480px) {
   .logo img { height: 68px; }
   :root { --header-h: 94px; }
-  .site-footer { padding: 40px var(--gutter-right) 32px var(--gutter-left); }
+  .site-footer { padding: 28px 16px; }
 }
 
 /* the mobile menu is a <details>: undo the accordion styling */
 details.menu { border: 0 !important; margin: 0; padding: 0; max-width: none; }
 .menu > summary { padding: 10px; font-size: 1rem; }
 .menu > summary::after { content: none !important; }
+
+/* ── Tiles (home, sprints, articles, free resources): blng.studio project feed — a 3:2 picture,
+   then the name. Each tile has a 2px border in the divider colour (every rule on blng.studio is 2px).
+   Hover / keyboard focus: the border turns green, the picture zooms to 1.02 inside its frame, the
+   title turns green and the arrow slides 10px (blng.studio "next project" link). No lift, no shadow. ── */
+main .tiles { max-width: none; list-style: none; padding: 0; margin: 48px 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.tile { margin: 0; padding: 0; }
+.tile-link { display: flex; flex-direction: column; height: 100%; color: var(--charcoal); text-decoration: none; background: var(--porcelain);
+  border: var(--rule-w) solid var(--rule-strong); transition: border-color .25s var(--ease); }
+.tile-link:hover, .tile-link:focus-visible { border-color: var(--accent); }
+.tile-link:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 4px; box-shadow: none; }
+.tile-media { aspect-ratio: 3 / 2; overflow: hidden; color: var(--charcoal); }
+.tile-media-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform .6s var(--ease); }
+.tile-link:hover .tile-media-inner, .tile-link:focus-visible .tile-media-inner { transform: scale(1.02); }
+.tile-media img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.02) saturate(.82); }  /* blng.studio photo treatment */
+.tile-svg { width: 78%; height: auto; display: block; }
+.tile-mustard { background: var(--mustard-soft); }
+.tile-green { background: var(--green-soft); }
+.tile-terracotta { background: var(--terracotta); }
+.tile-stone { background: var(--stone); }
+.tile-num { font-size: clamp(4rem, 9vw, 7.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1; color: var(--accent); }
+.tile-body { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 22px; }
+main .tile-body p, main .tile-body li { font-size: var(--fs-body-sm); line-height: 1.6; margin-bottom: .55em; }
+.tile-label { font-size: var(--fs-label) !important; letter-spacing: .1em; text-transform: uppercase; color: var(--label); }
+.tile-title { font-size: 1.9rem; font-weight: 300; letter-spacing: .01em; line-height: 1.25; margin: 0 0 14px; transition: color var(--t-fast); }
+.tile-link:hover .tile-title, .tile-link:focus-visible .tile-title { color: var(--accent); }   /* 1.9rem = large text: green passes AA large (3.08:1) */
+.tile-summary { color: var(--charcoal); }
+.tile-for { color: var(--small-text); }
+.tile-for-label { color: var(--charcoal); font-weight: 400; }
+.tile-items { list-style: none; padding: 0; margin: 4px 0 12px; }
+.tile-items li { position: relative; padding-left: 22px; margin-bottom: .35em; }
+.tile-items li::before { content: ''; position: absolute; left: 2px; top: .7em; width: 8px; height: 8px; border-radius: 50%; background: var(--terracotta); }
+.tile-meta { font-weight: 400; margin-top: 4px; }
+.tile-cta { margin-top: auto !important; padding-top: 14px; margin-bottom: 0 !important; font-size: var(--fs-button) !important; letter-spacing: var(--ls-button); text-transform: uppercase; display: flex; gap: 10px; align-items: center; }
+.tile-arrow { display: inline-block; transition: transform .25s var(--ease), color .25s var(--ease); }
+.tile-link:hover .tile-arrow, .tile-link:focus-visible .tile-arrow { transform: translateX(10px); color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .tile-link:hover .tile-media-inner, .tile-link:focus-visible .tile-media-inner,
+  .tile-link:hover .tile-arrow, .tile-link:focus-visible .tile-arrow { transform: none; }
+}
+.page-tiles main > header.hero { border-bottom: none; }
+
+/* ── Legal & Privacy Notice: blng.studio legal.html — uppercase labels, ruled sections, 860px ── */
+.page-legal-notice main > section { padding-top: 48px; padding-bottom: 48px; }
+.page-legal-notice main > section + section { border-top: var(--rule-w) solid var(--rule); }
+.page-legal-notice main > section > h2 { font-size: 1.1rem; letter-spacing: .2em; text-transform: uppercase; color: var(--label); font-weight: 300; margin-bottom: 20px; line-height: 1.6; }
+.page-legal-notice main > section ul { list-style: none; padding-left: 0; }
+
+/* ── Cursor (blng.studio): 20px dot following the pointer, a 2px ring over links and buttons,
+   0.15s ease. Added by site.js on fine pointers only; hidden on touch and with reduced motion.
+   Form fields keep the system cursor. ── */
+#cursor { position: fixed; left: -40px; top: -40px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%); opacity: 0; transition: transform .15s ease, background-color .15s ease, border-color .15s ease, opacity .15s ease; }
+#cursor.is-visible { opacity: 1; }
+#cursor.cursor-outline { background-color: transparent; border: 2px solid var(--accent); }
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.has-cursor [contenteditable=""], html.has-cursor [contenteditable="true"] { cursor: auto !important; }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { #cursor { display: none; } }
+
+/* ── Scroll reveal (blng.studio .reveal): fade up 16px, 0.65s ease. Only when site.js runs. ── */
+.js-reveal .reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--t-reveal) ease, transform var(--t-reveal) ease; }
+.js-reveal .reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js-reveal .reveal { opacity: 1; transform: none; } }
+
+@media (max-width: 1024px) {
+  main .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+}
+@media (max-width: 700px) {
+  main .tiles { grid-template-columns: 1fr; gap: 24px; margin-top: 32px; }
+  .tile-body { padding: 18px 18px 20px; }
+  .tile-title { font-size: 1.7rem; }
+  main .tile-body p, main .tile-body li { font-size: 1.15rem !important; }
+  .tile-cta { font-size: var(--fs-button) !important; }
+  .page-legal-notice main > section { padding-top: 36px; padding-bottom: 36px; }
+}
+.page-legal-notice main > section li { padding-left: 0; }
