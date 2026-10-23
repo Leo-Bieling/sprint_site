@@ -15,7 +15,7 @@
 :root { --label: #62625F; --muted: #62625F; --small-text: #5A5957; }
 /* blng sprint green = the green of "sprint" in the logo (#4E7400 at 75% on porcelain renders #7A973F,
    the blng.studio --green). It takes the role terracotta has on blng.studio: cursor and hover. */
-:root { --accent: var(--green); --stone: #ECE8E1; --sky-soft: #B3CCDD; --terracotta-soft: #F2CDB9; --ease: ease; }
+:root { --accent: var(--green); --stone: #ECE8E1; --terracotta-soft: #F2CDB9; --ease: ease; }   /* --sky-soft lives in tokens.css */
 html { -webkit-text-size-adjust: 100%; }
 body { font-size: var(--fs-body); line-height: var(--lh-body); }
 
@@ -149,6 +149,13 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
 .page-article main > section p, .page-article main > section li { font-size: var(--fs-body-sm); line-height: 1.8; }
 .page-article main > header > p:not(.eyebrow) { font-size: var(--fs-body-sm); }
 .page-article h1 { font-size: clamp(2.2rem, 4vw, 4rem); }
+/* inline article diagrams: <figure class="article-figure"><svg …>…</svg><figcaption>…</figcaption></figure> in the
+   article Markdown. The build sets --fig-accent (strong category colour) and --fig-accent-soft (soft category token)
+   on the figure; the SVG uses them as style="fill:var(--fig-accent-soft)" etc., never as hard-coded hex. */
+.page-article main > section > figure.article-figure { max-width: 860px; margin: 40px 0 48px; }
+.article-figure svg { display: block; width: 100%; height: auto; }
+.article-figure figcaption { margin-top: 14px; padding-top: 12px; border-top: var(--rule-w) solid var(--rule);
+  font-size: var(--fs-small); font-weight: var(--fw-light); line-height: 1.6; color: var(--small-text); }  /* #5A5957 on porcelain: 6.7:1 */
 
 /* ── Footer: as blng.studio. Three columns (address | contact | legal + ©), bottom-aligned,
    1.2rem, 0.04em tracking, on a soft colour band. blng.studio picks mustard / green / terracotta
@@ -186,6 +193,8 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
   .page-legal main > section p, .page-legal main > section li, .page-article main > section p, .page-article main > section li { font-size: 1.15rem !important; line-height: 1.7; }
   main > section > p, main > section > ul, main > section > ol { font-size: 1.25rem; line-height: 1.75; }
   .hero > p:not(.eyebrow):not(.actions) { font-size: 1.3rem; line-height: 1.7; }
+  .article-figure figcaption { font-size: 1rem; }
+  .page-article main > section > figure.article-figure { margin: 28px 0 36px; }
   .btn { padding: 9px 20px; }
   .site-footer { grid-template-columns: 1fr; gap: 20px; padding: 40px 24px; }
   .footer-middle, .footer-right { text-align: left; }
