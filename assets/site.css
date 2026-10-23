@@ -362,3 +362,27 @@ main .client-chips li.client-chip { margin: 0; padding: 4px 12px 3px; font-size:
 main .client-chips li.client-chip::before, main .client-chips li.client-chip::marker { content: none; }
 .page-clients { margin: 24px 0 36px; }
 @media (max-width: 700px) { main .client-chips li.client-chip { font-size: .8rem !important; padding: 3px 10px 2px; } }
+
+/* ── Visitor filter by client type (/sprints/, /articles/; FILTER_PAGES in build.py). Text pills as
+   blng.studio's .filter-btn: uppercase 0.14em, 2px outline, no fill. Active category chip = that category's
+   colour: light category tint, outline and text in the dark accent (>= 4.5:1 on the tint). Active "All" =
+   charcoal. Ships `hidden`; site.js shows it, so without JS there are no chips and every tile shows. ── */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.tile-filter[hidden], .tiles > .tile[hidden] { display: none !important; }
+main .filter-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 40px 0 0; max-width: none; }
+main .filter-chips > li { margin: 0; padding: 0; }
+main .filter-chips > li::before, main .filter-chips > li::marker { content: none; }
+.filter-chip { font-family: var(--font); font-size: var(--fs-button); letter-spacing: .14em; text-transform: uppercase; line-height: 1.4;
+  padding: 9px 22px 8px; border: var(--rule-w) solid #8A8986; border-radius: var(--radius-pill); background: transparent; color: var(--charcoal);
+  cursor: pointer; transition: border-color var(--t-fast), color var(--t-fast), background-color var(--t-fast); }   /* #8A8986 outline 3.2:1 on porcelain */
+.filter-chip:hover { border-color: var(--charcoal); }
+.filter-chip[aria-pressed="true"] { background: var(--f-bg, var(--charcoal)); border-color: var(--f-line, var(--charcoal)); color: var(--f-ink, var(--porcelain)); }
+.filter-all[aria-pressed="true"] { background: var(--charcoal); border-color: var(--charcoal); color: var(--porcelain); }
+.filter-chip:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 3px; box-shadow: 0 0 0 5px var(--porcelain); }
+main .tile-filter + .tiles { margin-top: 32px; }
+@media (max-width: 700px) { main .filter-chips { gap: 8px; margin-top: 28px; } .filter-chip { padding: 6px 12px 5px; letter-spacing: .1em; } main .tile-filter + .tiles { margin-top: 24px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .tiles > .tile.filter-in { animation: filter-in .3s ease both; }
+  @keyframes filter-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) { .filter-chip { transition: none; } }
