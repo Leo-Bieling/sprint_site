@@ -18,6 +18,7 @@
   /* Tints used on blng.studio */
   --mustard-soft: #FFD67C; /* About "manifesto" band; mobile-menu bg option */
   --green-soft:   #B8CE88; /* mobile-menu bg option */
+  --sky-soft:     #B3CCDD; /* derived: soft Emerging Architects tint (tile tops, article diagrams); charcoal 10.2:1 */
   --label:        rgba(28,28,26,0.45); /* small uppercase labels */
   --muted:        rgba(28,28,26,0.5);  /* subtitles */
   --disabled:     rgba(28,28,26,0.4);  /* greyed-out items */
