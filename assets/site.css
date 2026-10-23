@@ -313,6 +313,7 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.ha
    .th-draw   a path with pathLength="1" stroke-dasharray="1" that draws itself in
    .th-pop    fades and grows in
    .th-rise   grows up from its base (massing, walls)
+   .th-shrink shrinks from a larger size to its own (an area cut down by constraints)
    --d        start delay, set inline: style="--d:.6s"
    .th-loop-breathe / .th-loop-march   a slow, endless pulse / dash drift after the draw-in
    .th-loop-sweep  on a group: turns slowly round --o (e.g. style="--o:226px 108px"), like a clock hand
@@ -327,10 +328,12 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.ha
 .tile-svg .th-accent-fill-solid { fill: var(--th-accent-tint, var(--green-soft)); stroke: var(--th-accent, var(--accent)); stroke-width: 2; }
 .tile-svg .th-pop { transform-box: fill-box; transform-origin: center; }
 .tile-svg .th-rise { transform-box: fill-box; transform-origin: center bottom; }
+.tile-svg .th-shrink { transform-box: fill-box; transform-origin: center; }
 @media (prefers-reduced-motion: no-preference) {
   .tile-svg .th-draw { animation: th-draw 1.1s ease var(--d, 0s) both; }
   .tile-svg .th-pop { animation: th-pop .55s ease var(--d, 0s) both; }
   .tile-svg .th-rise { animation: th-rise .7s cubic-bezier(.2,.7,.3,1) var(--d, 0s) both; }
+  .tile-svg .th-shrink { animation: th-shrink 1.2s cubic-bezier(.3,.6,.3,1) var(--d, 0s) both; }
   .tile-svg .th-draw.th-loop-breathe { animation: th-draw 1.1s ease var(--d, 0s) both, th-breathe 3.2s ease-in-out calc(var(--d, 0s) + 1.1s) infinite; }
   .tile-svg .th-loop-breathe { animation: th-breathe 3.2s ease-in-out 2.2s infinite; }
   .tile-svg .th-loop-sweep { transform-box: view-box; transform-origin: var(--o, center); animation: th-sweep 12s linear var(--d, 2s) infinite; }
@@ -342,6 +345,7 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select, html.ha
 @keyframes th-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
 @keyframes th-sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes th-rise { from { opacity: 0; transform: scaleY(.15); } to { opacity: 1; transform: none; } }
+@keyframes th-shrink { from { opacity: .35; transform: scale(1.3); } to { opacity: 1; transform: none; } }
 @keyframes th-breathe { 0%, 100% { opacity: 1; } 50% { opacity: .6; } }
 @keyframes th-march { from { stroke-dasharray: .04 .02; stroke-dashoffset: 0; } to { stroke-dasharray: .04 .02; stroke-dashoffset: -1; } }
 
