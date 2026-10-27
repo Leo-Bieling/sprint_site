@@ -27,12 +27,14 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--porcelain);
   border-bottom: var(--rule-w) solid var(--rule-nav); padding: var(--nav-pad-y) var(--gutter-right) var(--nav-pad-y) var(--gutter-left);
   display: flex; justify-content: space-between; align-items: center; gap: 32px; }
-/* logo height follows the blng.studio header logo: 151 / 124 / 92 / 68 px */
+/* logo height follows the blng.studio header logo: 151 / 124 / 92 / 68 px. v29: one-line "blng sprint" wordmark (SVG),
+   cropped like blng.studio's blng-studio-crop.png, so "blng" lands at the same size and place as there */
 .logo { display: block; flex-shrink: 0; opacity: .9; transition: opacity var(--t-nav); }
 .logo:hover { opacity: 1; }
 .logo img { display: block; height: 151px; width: auto; }
 :root { --header-h: 177px; }
 .nav-links { display: flex; gap: 44px; list-style: none; }
+.nav-links a { white-space: nowrap; }   /* v29: the wider wordmark logo made "Free resources" wrap at 1280 */
 .nav-links a, .menu-panel a { font-size: var(--fs-nav); letter-spacing: var(--ls-nav); text-transform: uppercase; text-decoration: none; color: var(--charcoal); transition: color var(--t-nav); }
 /* hover as blng.studio: the text colour changes (0.25s); green here, terracotta there */
 .nav-links a:hover { color: var(--accent); }
@@ -55,7 +57,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   padding: var(--nav-pad-y) var(--gutter-right) 48px var(--gutter-left); animation: menu-in .35s ease both; }
 @keyframes menu-in { from { opacity: 0; } to { opacity: 1; } }
 .menu-logo { display: block; width: max-content; }
-.menu-logo img { display: block; height: 151px; width: auto; }
+.menu-logo img { display: block; height: 62px; width: auto; }   /* blng.studio .mobile-menu-logo img: 200px wide = 62px high */
 .menu-panel ul { list-style: none; padding: 0; margin-top: 72px; display: flex; flex-direction: column; gap: 32px; }
 .menu-panel li { margin: 0; padding: 0; }
 .menu-panel a { font-size: 1.4rem; }
@@ -78,6 +80,13 @@ h4 { font-size: var(--fs-body-sm); font-weight: 400; margin: 32px 0 12px; }
 p, ul, ol, table, blockquote, details, aside, figure { margin-bottom: 1.1em; }
 .hero > p:not(.eyebrow):not(.actions) { font-size: var(--fs-lead); }
 .eyebrow { font-size: var(--fs-label); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--label); margin-bottom: 24px; line-height: 1.6; }
+/* v29: the home byline keeps its own case ("by blng studio, London"), as blng.studio writes its name */
+.eyebrow-byline { text-transform: none; letter-spacing: .02em; font-size: 1.15rem; }
+/* v29: the one-line privacy note under a sign-up button: smaller italic */
+main p.form-note { font-size: 1.1rem !important; line-height: 1.6 !important; color: var(--small-text); margin-top: -8px; }   /* #5A5957 on porcelain 6.5:1 */
+main p.form-note em { font-style: italic; }
+/* v29: home section headings as uppercase section labels (THE SPRINTS, GUIDES, FAQ, THE STUDIO …) */
+.page-home main > section > h2 { font-size: clamp(1.4rem, 2.2vw, 2rem); font-weight: 400; letter-spacing: .14em; text-transform: uppercase; line-height: 1.35; }
 strong { font-weight: 400; }
 em { font-style: italic; }
 ul, ol { padding-left: 1.1em; }
@@ -101,8 +110,10 @@ main a:not(.btn):not(.tile-link):hover { color: var(--accent); border-bottom-col
 .btn-solid { background: var(--charcoal); border-color: var(--charcoal); color: var(--porcelain); }
 .btn-solid:hover { background: var(--accent); border-color: var(--accent); color: var(--charcoal); } /* charcoal on green 5.2:1 */
 p:not(.actions) > .btn-solid, li > .btn-solid { padding: 6px 18px; vertical-align: baseline; }
-.btn-inert { cursor: default; color: var(--muted); border-color: var(--rule-strong); }
-.btn-inert:hover { color: var(--muted); border-color: var(--rule-strong); }
+/* gated sign-up button while NOTION_FORM_URL is None (v29): charcoal with bold green text, so it reads clearly but
+   doesn't look like the solid booking button (porcelain text) and doesn't react to hover. #7A973F on #1d1d1b = 5.1:1 (AA) */
+.btn-inert { cursor: not-allowed; background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; font-weight: 700; }
+.btn-inert:hover { background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; }
 
 /* sprint cards: ruled columns, no boxes */
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); margin: 40px 0 32px; border-top: var(--rule-w) solid var(--rule-strong); }
@@ -172,18 +183,23 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
 .btn:focus-visible { outline-offset: 4px; }
 
 /* ── Breakpoints: 1024 / 700 / 480 ── */
+/* v29: the one-line wordmark is wider than the old stacked logo (451 vs ~175 px at 151 px high), so the
+   four nav links no longer fit beside it below ~1240 px. Tighten the gap, then switch to the menu button early. */
+@media (max-width: 1440px) { .nav-links { gap: 28px; } }
+@media (max-width: 1240px) { .nav-links { display: none; } .menu { display: block; } }
 @media (max-width: 1024px) {
   .nav-links { display: none; }
   .menu { display: block; }
-  .logo img, .menu-logo img { height: 124px; }
+  .logo img { height: 124px; }
   :root { --header-h: 150px; }
   .cards { grid-template-columns: 1fr; }
   .card, .card + .card { padding: 32px 0; border-right: none; border-bottom: var(--rule-w) solid var(--rule-strong); }
   .card:last-child { border-bottom: none; }
 }
 @media (max-width: 700px) {
-  .logo img, .menu-logo img { height: 92px; }
-  :root { --header-h: 118px; }
+  .logo img { height: 92px; }
+  .site-header { padding: 10px 20px 10px 24px; }   /* blng.studio nav at <=700px (v29) */
+  :root { --header-h: 114px; }
   h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
   h3, .card h3 { font-size: 1.6rem; }
   main > header.hero { padding-top: 16px; padding-bottom: 56px; }
@@ -204,8 +220,9 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
   .page-article h1 { font-size: var(--fs-display); }
 }
 @media (max-width: 480px) {
-  .logo img, .menu-logo img { height: 68px; }
-  :root { --header-h: 94px; }
+  .logo img { height: 68px; }
+  .site-header { padding: 8px 14px 8px 16px; }   /* blng.studio nav at <=480px (v29) */
+  :root { --header-h: 86px; }
   .site-footer { padding: 28px 16px; }
 }
 
@@ -386,3 +403,12 @@ main .tile-filter + .tiles { margin-top: 32px; }
   @keyframes filter-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
 @media (prefers-reduced-motion: reduce) { .filter-chip { transition: none; } }
+
+/* ── v29: article date line + reading time, and "Related articles" (no icons, no counts) ── */
+main .hero > p.article-meta { font-size: 1.1rem !important; line-height: 1.6; letter-spacing: .02em; color: var(--small-text); margin: 14px 0 32px; }   /* #5A5957 on porcelain 6.5:1 */
+.article-meta .nowrap { white-space: nowrap; }
+.article-meta time { font-style: normal; }
+.article-meta span[aria-hidden] { margin: 0 .35em; }
+.tiles .tile-meta { font-size: var(--fs-small); color: var(--small-text); }
+main > section.related-articles > h2 { font-size: clamp(1.4rem, 2.2vw, 2rem); font-weight: 400; letter-spacing: .14em; text-transform: uppercase; line-height: 1.35; }
+main > section.related-articles > .tiles { max-width: none; margin-bottom: 0; }
