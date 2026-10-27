@@ -33,7 +33,11 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 .logo:hover { opacity: 1; }
 .logo img { display: block; height: 151px; width: auto; }
 :root { --header-h: 177px; }
-.nav-links { display: flex; gap: 44px; list-style: none; }
+.nav-links { display: flex; gap: 44px; list-style: none; margin: 0; padding: 0; }
+/* v30: as blng.studio's nav: no list margin/indent from the body ul rules and line-height normal, so the
+   links' text box (29 px at 22.4 px) is centred on the logo exactly like blng.studio (top 73 px at >=1025 px). */
+.nav-links, .nav-links li { margin: 0; padding: 0; line-height: normal; font-size: var(--fs-nav); }   /* li strut = link size, as on blng.studio */
+.nav-links a { line-height: normal; }
 .nav-links a { white-space: nowrap; }   /* v29: the wider wordmark logo made "Free resources" wrap at 1280 */
 .nav-links a, .menu-panel a { font-size: var(--fs-nav); letter-spacing: var(--ls-nav); text-transform: uppercase; text-decoration: none; color: var(--charcoal); transition: color var(--t-nav); }
 /* hover as blng.studio: the text colour changes (0.25s); green here, terracotta there */
@@ -228,7 +232,7 @@ th { font-weight: 400; font-size: var(--fs-label); letter-spacing: .12em; text-t
 
 /* the mobile menu is a <details>: undo the accordion styling */
 details.menu { border: 0 !important; margin: 0; padding: 0; max-width: none; }
-.menu > summary { padding: 10px; font-size: 1rem; }
+.menu > summary { padding: 8px; font-size: 1rem; line-height: normal; }   /* v30: blng.studio .menu-btn: padding 8px, 42 x 37 */
 .menu > summary:hover { text-decoration: none; }
 .menu > summary::after { content: none !important; }
 
