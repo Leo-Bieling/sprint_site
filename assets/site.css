@@ -111,18 +111,19 @@ main a:not(.btn):not(.tile-link):hover { color: var(--accent); border-bottom-col
 .btn { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font); font-weight: 400; font-size: var(--fs-button); letter-spacing: var(--ls-button); text-transform: uppercase; line-height: 1.4;
   padding: 12px 28px; border: var(--rule-w) solid var(--btn-border); border-radius: var(--radius-pill); background: transparent; color: var(--charcoal); text-decoration: none; transition: border-color var(--t-fast), color var(--t-fast), background-color var(--t-fast); }
 .btn:hover { border-color: var(--accent); color: var(--accent); }   /* blng.studio .more-btn: border + text change colour */
-.btn-solid { background: var(--charcoal); border-color: var(--charcoal); color: var(--porcelain); }
-.btn-solid:hover { background: var(--accent); border-color: var(--accent); color: var(--charcoal); } /* charcoal on green 5.2:1 */
+/* v36 (Leo, 28 Oct 2026): ONE filled button style for every filled button (booking .btn-solid, download .btn-download):
+   green fill #7A973F, charcoal text #1d1d1b (5.1:1 AA) and a 2px charcoal outline; on hover and keyboard focus the fill
+   goes transparent and text + outline stay charcoal (15.7:1 on porcelain), with the .btn 0.2s fade. No charcoal-filled
+   buttons are left. Outline pills (.btn) are unchanged. */
+.btn-solid, .btn-download { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; }
+.btn-solid:hover, .btn-solid:focus-visible, .btn-download:hover, .btn-download:focus-visible { background: transparent; border-color: #1d1d1b; color: #1d1d1b; }
 p:not(.actions) > .btn-solid, li > .btn-solid { padding: 6px 18px; vertical-align: baseline; }
-/* v35 (Leo, 28 Oct 2026): the former charcoal-fill + green-text buttons are now green fill (#7A973F), charcoal text
-   (#1d1d1b, 5.1:1 AA) and a charcoal outline (same 2px --rule-w as every .btn). Live ones (.btn-download) go see-through
-   on hover / keyboard focus: transparent fill, charcoal text + outline (15.7:1 on porcelain), with the .btn 0.2s fade.
-   The gated button (.btn-inert, only while a freebie's hubspot_form_embed is None) has the same look but is not a
-   link, so it doesn't react to hover. Shape, size and letter-spacing come from .btn, unchanged. */
+/* v35: the download button (thank-you pages) is bold; its colours and hover are the shared filled-button rule above.
+   The gated button (.btn-inert, only while a freebie's hubspot_form_embed is None) looks the same but is not a link,
+   so it doesn't react to hover. */
 .btn-inert { cursor: not-allowed; background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; font-weight: 700; }
 .btn-inert:hover { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; }
-.btn-download { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; font-weight: 700; }
-.btn-download:hover, .btn-download:focus-visible { background: transparent; border-color: #1d1d1b; color: #1d1d1b; }
+.btn-download { font-weight: 700; }
 .download-visual { display: block; width: 100%; }
 /* v34: next-step line above the drawing; the drawing links to the same sprint (tile-style zoom on hover) */
 main p.download-next { max-width: 640px; margin-bottom: 24px; }
