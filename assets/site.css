@@ -114,10 +114,23 @@ main a:not(.btn):not(.tile-link):hover { color: var(--accent); border-bottom-col
 .btn-solid { background: var(--charcoal); border-color: var(--charcoal); color: var(--porcelain); }
 .btn-solid:hover { background: var(--accent); border-color: var(--accent); color: var(--charcoal); } /* charcoal on green 5.2:1 */
 p:not(.actions) > .btn-solid, li > .btn-solid { padding: 6px 18px; vertical-align: baseline; }
-/* gated sign-up button while NOTION_FORM_URL is None (v29): charcoal with bold green text, so it reads clearly but
+/* gated sign-up button while the freebie's hubspot_form_embed is None (v29; v33: was NOTION_FORM_URL): charcoal with bold green text, so it reads clearly but
    doesn't look like the solid booking button (porcelain text) and doesn't react to hover. #7A973F on #1d1d1b = 5.1:1 (AA) */
 .btn-inert { cursor: not-allowed; background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; font-weight: 700; }
 .btn-inert:hover { background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; }
+/* v33 thank-you pages: the download button matches the gated button (charcoal, bold green text, 5.1:1 AA) but is live:
+   on hover it turns green with charcoal text (5.2:1), like the solid booking button */
+.btn-download { background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; font-weight: 700; }
+.btn-download:hover, .btn-download:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--charcoal); }
+.download-visual { max-width: 480px; margin: 0 0 32px; }
+main p.download-next { max-width: 640px; }
+.nb { white-space: nowrap; }
+/* HubSpot form (iframe, .hs-form-frame). HubSpot pads the form 40px on every side inside the iframe
+   (.hsfc-Step__Content, measured 28 Oct 2026), so pull the box out by 40px left/top/bottom: the labels, fields and
+   button then line up with the page text. Right side left alone (no overflow on phones). If the padding is changed in
+   HubSpot's form style, change the 40px here too. */
+.hubspot-form { margin: -24px 0 -24px -40px; max-width: 680px; }
+.hubspot-form .hs-form-frame { min-height: 420px; }   /* HubSpot embed slot on the freebie pages (when set) */
 
 /* sprint cards: ruled columns, no boxes */
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); margin: 40px 0 32px; border-top: var(--rule-w) solid var(--rule-strong); }
