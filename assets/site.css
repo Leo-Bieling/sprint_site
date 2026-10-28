@@ -114,14 +114,15 @@ main a:not(.btn):not(.tile-link):hover { color: var(--accent); border-bottom-col
 .btn-solid { background: var(--charcoal); border-color: var(--charcoal); color: var(--porcelain); }
 .btn-solid:hover { background: var(--accent); border-color: var(--accent); color: var(--charcoal); } /* charcoal on green 5.2:1 */
 p:not(.actions) > .btn-solid, li > .btn-solid { padding: 6px 18px; vertical-align: baseline; }
-/* gated sign-up button while the freebie's hubspot_form_embed is None (v29; v33: was NOTION_FORM_URL): charcoal with bold green text, so it reads clearly but
-   doesn't look like the solid booking button (porcelain text) and doesn't react to hover. #7A973F on #1d1d1b = 5.1:1 (AA) */
-.btn-inert { cursor: not-allowed; background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; font-weight: 700; }
-.btn-inert:hover { background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; }
-/* v33 thank-you pages: the download button matches the gated button (charcoal, bold green text, 5.1:1 AA) but is live:
-   on hover it turns green with charcoal text (5.2:1), like the solid booking button */
-.btn-download { background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; font-weight: 700; }
-.btn-download:hover, .btn-download:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--charcoal); }
+/* v35 (Leo, 28 Oct 2026): the former charcoal-fill + green-text buttons are now green fill (#7A973F), charcoal text
+   (#1d1d1b, 5.1:1 AA) and a charcoal outline (same 2px --rule-w as every .btn). Live ones (.btn-download) go see-through
+   on hover / keyboard focus: transparent fill, charcoal text + outline (15.7:1 on porcelain), with the .btn 0.2s fade.
+   The gated button (.btn-inert, only while a freebie's hubspot_form_embed is None) has the same look but is not a
+   link, so it doesn't react to hover. Shape, size and letter-spacing come from .btn, unchanged. */
+.btn-inert { cursor: not-allowed; background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; font-weight: 700; }
+.btn-inert:hover { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; }
+.btn-download { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; font-weight: 700; }
+.btn-download:hover, .btn-download:focus-visible { background: transparent; border-color: #1d1d1b; color: #1d1d1b; }
 .download-visual { display: block; width: 100%; }
 /* v34: next-step line above the drawing; the drawing links to the same sprint (tile-style zoom on hover) */
 main p.download-next { max-width: 640px; margin-bottom: 24px; }
