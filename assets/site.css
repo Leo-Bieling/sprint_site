@@ -122,15 +122,24 @@ p:not(.actions) > .btn-solid, li > .btn-solid { padding: 6px 18px; vertical-alig
    on hover it turns green with charcoal text (5.2:1), like the solid booking button */
 .btn-download { background: #1d1d1b; border-color: #1d1d1b; color: #7A973F; font-weight: 700; }
 .btn-download:hover, .btn-download:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--charcoal); }
-.download-visual { max-width: 480px; margin: 0 0 32px; }
-main p.download-next { max-width: 640px; }
+.download-visual { display: block; width: 100%; }
+/* v34: next-step line above the drawing; the drawing links to the same sprint (tile-style zoom on hover) */
+main p.download-next { max-width: 640px; margin-bottom: 24px; }
+.download-visual-link { display: block; max-width: 480px; margin: 0 0 32px; text-decoration: none; border: 0; }
+.download-visual-link:hover .tile-media-inner, .download-visual-link:focus-visible .tile-media-inner { transform: scale(1.07); }
+.download-visual-link:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .download-visual-link:hover .tile-media-inner, .download-visual-link:focus-visible .tile-media-inner { transform: none; } }
 .nb { white-space: nowrap; }
 /* HubSpot form (iframe, .hs-form-frame). HubSpot pads the form 40px on every side inside the iframe
    (.hsfc-Step__Content, measured 28 Oct 2026), so pull the box out by 40px left/top/bottom: the labels, fields and
-   button then line up with the page text. Right side left alone (no overflow on phones). If the padding is changed in
-   HubSpot's form style, change the 40px here too. */
-.hubspot-form { margin: -24px 0 -24px -40px; max-width: 680px; }
-.hubspot-form .hs-form-frame { min-height: 420px; }   /* HubSpot embed slot on the freebie pages (when set) */
+   button then line up with the page text. If the padding is changed in HubSpot's form style, change the 40px here too.
+   v34 scrollbar fix: inside the iframe HubSpot's <body> is its own scroll box, and the moved reCAPTCHA badge at its
+   foot (.grecaptcha-logo, 64px in a 60px slot) overflows it by 4px, so Windows/macOS draw a thin scrollbar at the
+   iframe's right edge. We can't style inside HubSpot's iframe, so the frame is made 24px wider than the box and the
+   box clips it (overflow: hidden): the scrollbar lands in the clipped strip, inside HubSpot's 40px right padding.
+   The clip also keeps the frame from ever widening the page on phones. Height stays HubSpot's (auto-resize). */
+.hubspot-form { margin: -24px 0 -24px -40px; max-width: 680px; overflow: hidden; }
+.hubspot-form .hs-form-frame { min-height: 420px; width: calc(100% + 24px); max-width: none; }
 
 /* sprint cards: ruled columns, no boxes */
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); margin: 40px 0 32px; border-top: var(--rule-w) solid var(--rule-strong); }
