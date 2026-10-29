@@ -124,6 +124,16 @@ p:not(.actions) > .btn-solid, li > .btn-solid { padding: 6px 18px; vertical-alig
 .btn-inert { cursor: not-allowed; background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; font-weight: 700; }
 .btn-inert:hover { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; }
 .btn-download { font-weight: 700; }
+/* v38: download pages end with an outlined "Book a free intro call": the reverse of the filled button. Transparent
+   with a 2px charcoal outline and charcoal text; on hover / keyboard focus it fills green (charcoal text 5.1:1). */
+.btn-book-outline { background: transparent; border-color: #1d1d1b; color: #1d1d1b; }
+.btn-book-outline:hover, .btn-book-outline:focus-visible { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; }
+main p.download-book { margin-top: 0; }
+/* v38: freebie page whose HubSpot form isn't ready: the form slot (#get-it) holds a greyed-out, disabled placeholder.
+   Set the freebie's hubspot_form_embed in build.py and the slot becomes the form (no CSS change needed). */
+.form-pending { margin: 8px 0 0; }
+.btn-pending { cursor: not-allowed; background: #ECE8E1; border-color: #B5B2AC; border-style: dashed; color: #5F5E5A; }
+.btn-pending:hover { background: #ECE8E1; border-color: #B5B2AC; color: #5F5E5A; }
 .download-visual { display: block; width: 100%; }
 /* v34: next-step line above the drawing; the drawing links to the same sprint (tile-style zoom on hover) */
 main p.download-next { max-width: 640px; margin-bottom: 24px; }
