@@ -445,3 +445,22 @@ main .hero > p.article-meta { font-size: 1.1rem !important; line-height: 1.6; le
 .tiles .tile-meta { font-size: var(--fs-small); color: var(--small-text); }
 main > section.related-articles > h2 { font-size: clamp(1.4rem, 2.2vw, 2rem); font-weight: 400; letter-spacing: .14em; text-transform: uppercase; line-height: 1.35; }
 main > section.related-articles > .tiles { max-width: none; margin-bottom: 0; }
+
+/* v45 (Leo, 30 Oct 2026): paid guide sales page (body.page-guide, in the sprint look). The "Get the workbook" button
+   is the shared filled style (green #7A973F, charcoal text 5.1:1, 2px charcoal outline; transparent on hover and
+   keyboard focus) and jumps to #buy, which clears the fixed header. The previews are a row of page images (a list:
+   GUIDES[...]["previews"] in build.py), each with a caption; one column on phones. */
+.btn-buy { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; font-weight: 700; }
+.btn-buy:hover, .btn-buy:focus-visible { background: transparent; border-color: #1d1d1b; color: #1d1d1b; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+#buy { scroll-margin-top: calc(var(--page-top) + 8px); }
+.guide-previews { list-style: none; padding: 0; margin: 8px 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 960px; }
+.guide-preview { margin: 0; }
+.guide-preview img { display: block; width: 100%; height: auto; border: var(--rule-w) solid var(--charcoal); background: var(--porcelain); }
+.guide-preview-caption { display: block; margin-top: 10px; font-size: var(--fs-small); color: rgba(28,28,26,.75); line-height: 1.4; }
+.guide-payment { max-width: 680px; margin: 8px 0 24px; }
+.guide-payment .payments-iframe-container { min-height: 560px; }
+@media (max-width: 700px) {
+  .guide-previews { grid-template-columns: 1fr; max-width: 420px; }
+}

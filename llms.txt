@@ -11,6 +11,10 @@ Each sprint's scope and fixed price are confirmed in a written proposal before y
 - [Feasibility Sprint](https://sprint.blng.studio/sprints/feasibility-sprint/): Fixed fee, quoted per site after a free intro call. What can this site hold, and how do the options compare, before you commit? For: Small developers, landowners and investors testing what a site can hold.
 - [Portfolio Review Sprint](https://sprint.blng.studio/sprints/portfolio-review-sprint/): £70 incl. VAT. Is your portfolio ready to get you the interview, before you apply? For: Graduates, Part 1 and Part 2 students and early-career architects applying for jobs.
 
+## Guides
+
+- [Job Search Launchpad](https://sprint.blng.studio/sprints/job-search-launchpad/): £24 incl. VAT, PDF workbook. Not sure where to start your job search? A short, AI-guided workbook to take stock before you apply. For: Graduates, Part 1 and Part 2 students and early-career architects starting a job search.
+
 ## Free resources
 
 - [Will this building work? The free premises checklist for nursery founders](https://sprint.blng.studio/free-resources/nursery-school/): Free · for nursery founders · England. Premises checklist (PDF); EYFS capacity calculator (Excel spreadsheet).
