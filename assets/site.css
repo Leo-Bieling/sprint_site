@@ -132,6 +132,8 @@ main p.download-book { margin-top: 0; }
 .download-visual { display: block; width: 100%; }
 /* v34: next-step line above the drawing; the drawing links to the same sprint (tile-style zoom on hover) */
 main p.download-next { max-width: 640px; margin-bottom: 24px; }
+/* v48: the guide download page's next-step question as a headline, same size/weight as the page h1 (it's an h2) */
+main h2.download-next-head { font-size: var(--fs-display); font-weight: 300; line-height: var(--lh-head); letter-spacing: -0.01em; margin-bottom: 32px; max-width: 980px; text-wrap: balance; }
 .download-visual-link { display: block; max-width: 480px; margin: 0 0 32px; text-decoration: none; border: 0; }
 .download-visual-link:hover .tile-media-inner, .download-visual-link:focus-visible .tile-media-inner { transform: scale(1.07); }
 .download-visual-link:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 4px; }
