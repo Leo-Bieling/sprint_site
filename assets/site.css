@@ -448,7 +448,7 @@ main > section.related-articles > .tiles { max-width: none; margin-bottom: 0; }
 
 /* v45 (Leo, 30 Oct 2026): paid guide sales page (body.page-guide, in the sprint look). The "Get the workbook" button
    is the shared filled style (green #7A973F, charcoal text 5.1:1, 2px charcoal outline; transparent on hover and
-   keyboard focus) and jumps to #buy, which clears the fixed header. The previews are a row of page images (a list:
+   keyboard focus); v47: it opens HubSpot's payment link full-page (same tab). The previews are a row of page images (a list:
    GUIDES[...]["previews"] in build.py), each with a caption; one column on phones. */
 .btn-buy { background: #7A973F; border-color: #1d1d1b; color: #1d1d1b; font-weight: 700; }
 .btn-buy:hover, .btn-buy:focus-visible { background: transparent; border-color: #1d1d1b; color: #1d1d1b; }
@@ -467,11 +467,7 @@ html { scroll-behavior: smooth; }
    Zoom: each preview links to its large render; site.js opens it in a <dialog> (close button, Esc, tap outside;
    prev/next and swipe; page scroll locked; focus goes back to the preview). Pinch-zoom stays on (the viewport
    meta never blocks it), and without JavaScript the link opens the image.
-   Checkout: HubSpot's payment page is cross-origin and paints its own white body (no setting or URL parameter
-   makes it transparent), so it sits in a deliberate white card with the charcoal rule the preview pages use, as
-   wide as HubSpot's form column (496 px + its 16 px padding) on desktop and edge to edge on phones. HubSpot's embed
-   script fixes the iframe at 1332 px and never resizes it, while the checkout is taller (1381 px at 680 px wide,
-   about 1480 px on phones), so the inner page scrolled: --pay-h sets a height that fits the whole checkout. */
+   (v47: the embedded checkout and its CSS are gone; the buy buttons open HubSpot's payment link full-page.) */
 .guide-zoom { position: relative; display: block; border: 0 !important; text-decoration: none; cursor: zoom-in; }
 .guide-zoom:focus-visible { outline: 3px solid var(--charcoal); outline-offset: 4px; }
 .guide-zoom-badge { position: absolute; right: 10px; bottom: 10px; width: 44px; height: 44px; border-radius: 50%;
@@ -491,13 +487,7 @@ html.zoom-open { overflow: hidden; }
 .zoom-btn[hidden] { display: none; }
 @media (max-width: 480px) { .zoom-stage { padding: 60px 0 84px; } .zoom-stage img { max-width: 100%; } .zoom-caption { font-size: .95rem; } }
 
-:root { --pay-h: 1480px; }   /* measured 30 Oct: HubSpot footer ends ~1280-1330 px at 524 px wide, ~1430-1480 px at 360-430 px; headroom for error lines */
-.guide-payment { max-width: 528px; margin: 8px 0 0; border: var(--rule-w) solid var(--charcoal); background: #fff; overflow: hidden; }
-.guide-payment .payments-iframe-container { min-height: var(--pay-h); }
-.guide-payment .payments-iframe-container iframe { display: block; width: 100%; height: var(--pay-h) !important; min-height: 0 !important; }
 @media (max-width: 700px) {
-  :root { --pay-h: 1620px; }
-  .guide-payment { max-width: none; margin-left: calc(-1 * var(--gutter-left)); margin-right: calc(-1 * var(--gutter-right)); border-left: 0; border-right: 0; }
   /* previews on phones: a swipeable row, each page at ~78% of the screen so the next one peeks in */
   .guide-previews { display: flex; grid-template-columns: none; max-width: none; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
     margin-left: calc(-1 * var(--gutter-left)); margin-right: calc(-1 * var(--gutter-right)); padding: 4px var(--gutter-right) 12px var(--gutter-left);
