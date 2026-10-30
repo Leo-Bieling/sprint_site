@@ -7,8 +7,7 @@
    3. Mobile menu (a <details>): while open the page behind doesn't scroll; Escape closes it.
    4. Client filter (/sprints/, /articles/): shows the chip row the build ships `hidden`, hides tiles whose
       data-clients lacks the chosen category, and keeps ?for=<id> in the URL so a filtered view is linkable.
-   5. Paid-guide checkout (v46): HubSpot's embed script waits up to 5 s before it adds the payment iframe; start it
-      at once (its own startPaymentsEmbedScriptImmediate) so the checkout is there when the hero button jumps to it.
+   5. (v46 paid-guide checkout start: removed in v47, the checkout is no longer embedded.)
    6. "A look inside" zoom (v46): a preview link opens its large page image in a <dialog> (close button, Escape,
       tap outside the page; prev/next buttons, arrow keys and a horizontal swipe; page scroll locked; focus returns
       to the preview). Pinch-zoom still works. Without JavaScript the link opens the image itself.
@@ -93,11 +92,6 @@
     apply(start, false);
     bar.hidden = false;
   });
-
-  // ── Paid-guide checkout: start HubSpot's payment embed now ──
-  if (d.querySelector('.payments-iframe-container') && typeof window.startPaymentsEmbedScriptImmediate === 'function') {
-    try { window.startPaymentsEmbedScriptImmediate(); } catch (e) {}
-  }
 
   // ── "A look inside" zoom ──
   var zooms = Array.prototype.slice.call(d.querySelectorAll('a.guide-zoom'));
