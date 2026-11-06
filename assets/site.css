@@ -496,5 +496,13 @@ html.zoom-open { overflow: hidden; }
     scroll-padding-left: var(--gutter-left); -webkit-overflow-scrolling: touch; }
   .guide-preview { flex: 0 0 78%; scroll-snap-align: start; }
   .page-guide main .btn-buy, .page-guide-download main .btn-download { display: flex; justify-content: center; width: 100%; min-height: 52px; box-sizing: border-box; }
+  /* v52: tighter Job Search Launchpad hero on phones so headline, walk-away line, price, Buy now and the start of a preview sit above the fold */
+  .page-guide main > header.hero { padding-top: 12px; padding-bottom: 28px; }
+  .page-guide main > header.hero > p:not(.eyebrow):not(.actions) { font-size: 1.05rem; line-height: 1.45; margin: 10px 0 14px; }
+  .page-guide main > header.hero > p.actions { margin: 12px 0 14px; }
+  .page-guide main > header.hero .guide-previews { margin: 8px 0 0; }
+  .page-guide main > header.hero .guide-preview { flex: 0 0 72%; }
+  .page-guide main > header.hero .guide-preview-caption { display: none; }
+
   .page-guide-download main .btn-book-outline { min-height: 48px; display: inline-flex; align-items: center; }
 }
